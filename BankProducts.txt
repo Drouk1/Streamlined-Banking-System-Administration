@@ -1,0 +1,77 @@
+BANKITem_List
+{
+        BANKITEM
+    {
+        type Card
+        CODE 1
+        DECSR “Card 1”
+        AFM 17903849
+        numbER 1
+        COMMISSION-RATE 15.00
+        MAX-AMOUNT-OF-MOVEMENT 10000
+        MAX-ANNOUAL-AMMOUNT 101000
+    }
+        BANKITEM
+    {
+        TYPE Card
+        CODE 11
+        DECSR “Card 2”
+        AFM 18903849
+        NUMBER 1
+        COMMISSION-RATE 12.00
+        MAX-AMOUNT-OF-MOVEMENT 20000
+        MAX-ANNOUAL-AMMOUNT 265000
+    }
+        BANKITEM
+    {
+        TYPE Card
+        CODE 111
+        DECSR “Card 3”
+        AFM 19903849
+        NUMBER 1
+        COMMISSION-RATE 17.00
+        MAX-AMOUNT-OF-MOVEMENT 30000
+        MAX-ANNOUAL-AMMOUNT 430000
+    }
+        BANKITEM
+    {
+        TYPE Card
+        CODE 1111
+        DECSR “Card 4”
+        AFM 19903849
+        NUMBER 1
+        COMMISSION-RATE 13.00
+        MAX-AMOUNT-OF-MOVEMENT 40000
+        MAX-ANNOUAL-AMMOUNT 530000
+    }
+        BANKITEM
+    {
+        TYPE Loan
+        CODE 1
+        DECSR “Loan 1”
+        AFM 17903849
+        NUMBER 2
+        AMOUNT-OF-LOAN 100000
+        ANNOUAL-INTEREST-RATE 1000000
+    }
+        BANKITEM
+    {
+        TYPE Loan
+        CODE 11
+        DECSR “Loan 2”
+        AFM 18903849
+        NUMBER 2
+        AMOUNT-OF-LOAN 2000000
+        ANNOUAL-INTEREST-RATE 1000000
+    }
+        BANKITEM
+    {
+        TYPE Loan
+        CODE 111
+        DECSR “Loan 3”
+        AFM 19903849
+        NUMBER 2
+        AMOUNT-OF-LOAN 1500000
+        ANNOUAL-INTEREST-RATE 1000000
+    }
+}
