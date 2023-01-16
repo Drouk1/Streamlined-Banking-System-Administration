@@ -1,0 +1,24 @@
+SALESMAN_LIST
+{
+        SALESMAN
+    {
+        CODE 1
+        SURNAME “METAXAS”
+        FIRSTNAME “BABIS”
+        AFM 17232343
+    }
+        SALESMAN
+    {
+        CODE 11
+        SURNAME “ORFANIDIS”
+        FIRSTNAME “ADREAS”
+        AFM 13942312
+    }
+        SALESMAN
+    {
+        CODE 111
+        SURNAME “XIWNIS”
+        FIRSTNAME “MARIOS”
+        AFM 19853829
+    }
+}
