@@ -90,6 +90,58 @@ public class Main {
                     System.out.println("LOAN ADDED");
 
                 }
+            } else if (choice == 3) {
+                System.out.print("Choose the seller by his code: \n\n");
+                for (int i = 0; i < sellersStore.getSellers().size(); i++) { // kanei print tou sellers gia na tous dei
+                                                                             // o xristis kai na mporei na epileksei to
+                                                                             // code tou
+                    System.out.println(sellersStore.getSellers().get(i));
+                }
+                int mparigkasCode = scan.nextInt();
+                int j = 0;
+                while (true) { // loopa pou elegxei an exei dwthei swsti timi
+                    for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                        if (mparigkasCode == sellersStore.getSellers().get(i).getCode()) {
+                            j = 1;
+                            break;
+                        }
+                    }
+                    if (j == 1) {
+                        break;
+                    } else {
+                        System.out.print("Doesnt exist! Write again: ");
+                        mparigkasCode = scan.nextInt();
+                    }
+                }
+                System.out.print("What's the sale code: ");
+                int saleCode = scan.nextInt();
+                System.out.print("Whats the Bank Product you want to choose(1 for credit card and 2 for loan)? ");
+                int bankProduct = scan.nextInt();
+
+                System.out.print("Tell us the reasoning: ");
+                scan.nextLine();
+                String reason = scan.nextLine();
+                Sales salere = new Sales(saleCode, bankProduct, reason, null); // ftiaxnei kainourio object sales kai
+                                                                               // vazei tis times tou xristi
+
+                salesStore.getSales().add(salere);
+
+                String bankItemType;
+                if (bankProduct == 1) { // elegxei poia timi exei dwthei etsi wste na to metafrasi san card i loan
+                    bankItemType = "Card";
+                } else {
+                    bankItemType = "Loan";
+                }
+
+                System.out.print("Do you want to store this sale?");
+                String storeSale = scan.nextLine();
+
+                if (storeSale.equalsIgnoreCase("yes")) { // kalei tin WriteFilesSales kai grafei ta stoixeia sto
+                                                         // Sales.txt
+                    salesStore.WriteFilesSales("Sales.txt", saleCode, bankItemType, bankProduct, reason);
+                }
+
+                System.out.println("SALE ADDED");
             }
         }
     }    
