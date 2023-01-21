@@ -3,33 +3,33 @@ import java.util.ArrayList;
 
 public class FileLoader {
 
-    private ArrayList<CreditCards> creditCards = new ArrayList<CreditCards>(); // Dilwsi arraylist gia ta creditcards
-    private ArrayList<Loan> loans = new ArrayList<Loan>();// Dilwsi arraylist gia ta loans
-    private ArrayList<Sellers> sellers = new ArrayList<Sellers>();// Dilwsi arraylist gia tous sellers
-    private ArrayList<Sales> sales = new ArrayList<Sales>();// Dilwsi arraylist gia ta sales
-    private ArrayList<CreditCardMovement> creditCardMovements = new ArrayList<CreditCardMovement>();// Dilwsi arraylist
-                                                                                                    // gia ta
+    private ArrayList<CreditCards> creditCards = new ArrayList<CreditCards>(); //declares arraylist for creditcards
+    private ArrayList<Loan> loans = new ArrayList<Loan>();//declares arraylist for loans
+    private ArrayList<Sellers> sellers = new ArrayList<Sellers>();//declares arraylist fro sellers
+    private ArrayList<Sales> sales = new ArrayList<Sales>();//declares arraylist for sales
+    private ArrayList<CreditCardMovement> creditCardMovements = new ArrayList<CreditCardMovement>();// declares arraylist
+                                                                                                    // for
                                                                                                     // creditcards
                                                                                                     // movements
 
     public void loadFileBankProducts(String data) {
-        BufferedReader reader = null; // ta thetoume null
+        BufferedReader reader = null; //we set them null
         CreditCards creditCard = null;
         Loan loan = null;
         try {
             reader = new BufferedReader(new FileReader(data));
             String line;
-            while ((line = reader.readLine()) != null) { // diavazei kathe line tou text
+            while ((line = reader.readLine()) != null) { //reads every line of the text
                 if (line.toUpperCase().contains("BANKITEM_LIST".toUpperCase()) || (line.contains("{"))
                         || (line.toUpperCase().contains("BANKITEM".toUpperCase()))
-                        || (line.contains("}"))) { // an to line periexei ena apo afta tote pigainei sto epomeno
+                        || (line.contains("}"))) { //if a line has one of them it moves to the next
                     continue;
 
                 } else {
-                    if (line.toUpperCase().contains("Card".toUpperCase())) { // an line periexei to Card tote ftiaxnei
+                    if (line.toUpperCase().contains("Card".toUpperCase())) { // if line has the card then it makes
                                                                              // object
-                        creditCard = new CreditCards(); // credit card kai topothetei
-                        line = reader.readLine(); // ta stoixeia pou diavazei an line
+                        creditCard = new CreditCards(); // credit card and put
+                        line = reader.readLine(); //the elemnts that it reads if line
                         ((CreditCards) creditCard).setCode(Integer.parseInt(line.trim().split(" ", 2)[1]));
                         line = reader.readLine();
                         ((CreditCards) creditCard).setDescribe(line.trim().split(" ", 2)[1]);
@@ -46,10 +46,10 @@ public class FileLoader {
                         line = reader.readLine();
                         ((CreditCards) creditCard)
                                 .setMaxAnnualAmmount(Double.parseDouble(line.trim().split(" ", 2)[1]));
-                    } else if (line.toUpperCase().contains("Loan".toUpperCase())) { // an line periexei to Loan tote
-                                                                                    // ftiaxnei object
-                        loan = new Loan(); // loan kai topothetei
-                        line = reader.readLine(); // ta stoixeia pou diavazei an line
+                    } else if (line.toUpperCase().contains("Loan".toUpperCase())) { // if line has the loan then 
+                                                                                    // makes object
+                        loan = new Loan(); // loan and put
+                        line = reader.readLine(); // the elemnts that it reads if line
                         ((Loan) loan).setCode(Integer.parseInt((line.trim().split(" ", 2)[1])));
                         line = reader.readLine();
                         ((Loan) loan).setDescribe(((line.trim().split(" ", 2)[1])));

@@ -18,7 +18,7 @@ public class Main {
 
         while (choice != 0) {
 
-            if (choice == 1) { // input apo xristi
+            if (choice == 1) { // input from user
                 scan.nextLine();
                 System.out.print("First name: ");
                 String firstName = scan.nextLine();
@@ -92,14 +92,14 @@ public class Main {
                 }
             } else if (choice == 3) {
                 System.out.print("Choose the seller by his code: \n\n");
-                for (int i = 0; i < sellersStore.getSellers().size(); i++) { // kanei print tou sellers gia na tous dei
-                                                                             // o xristis kai na mporei na epileksei to
-                                                                             // code tou
+                for (int i = 0; i < sellersStore.getSellers().size(); i++) { // prints seller so
+                                                                             // the user can see them and choose
+                                                                             // the code 
                     System.out.println(sellersStore.getSellers().get(i));
                 }
                 int mparigkasCode = scan.nextInt();
                 int j = 0;
-                while (true) { // loopa pou elegxei an exei dwthei swsti timi
+                while (true) { //loop that checks if the user gives correct value
                     for (int i = 0; i < sellersStore.getSellers().size(); i++) {
                         if (mparigkasCode == sellersStore.getSellers().get(i).getCode()) {
                             j = 1;
@@ -121,13 +121,13 @@ public class Main {
                 System.out.print("Tell us the reasoning: ");
                 scan.nextLine();
                 String reason = scan.nextLine();
-                Sales salere = new Sales(saleCode, bankProduct, reason, null); // ftiaxnei kainourio object sales kai
-                                                                               // vazei tis times tou xristi
+                Sales salere = new Sales(saleCode, bankProduct, reason, null); //makes new sales object
+                                                                               // and put the values of the user
 
                 salesStore.getSales().add(salere);
 
                 String bankItemType;
-                if (bankProduct == 1) { // elegxei poia timi exei dwthei etsi wste na to metafrasi san card i loan
+                if (bankProduct == 1) { //checks what value was given to translate it like card or loan
                     bankItemType = "Card";
                 } else {
                     bankItemType = "Loan";
@@ -136,13 +136,13 @@ public class Main {
                 System.out.print("Do you want to store this sale?");
                 String storeSale = scan.nextLine();
 
-                if (storeSale.equalsIgnoreCase("yes")) { // kalei tin WriteFilesSales kai grafei ta stoixeia sto
+                if (storeSale.equalsIgnoreCase("yes")) { //calls WriteFilesSales and write the elements to
                                                          // Sales.txt
                     salesStore.WriteFilesSales("Sales.txt", saleCode, bankItemType, bankProduct, reason);
                 }
 
                 System.out.println("SALE ADDED");
-            }
+            } 
         }
     }    
 }
