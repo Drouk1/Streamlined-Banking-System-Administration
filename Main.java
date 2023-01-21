@@ -5,6 +5,31 @@ public class Main {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
+        FileLoader bankStore = new FileLoader();
+        FileLoader sellersStore = new FileLoader();
+        FileLoader salesStore = new FileLoader();
+        FileLoader creditCardMovementStore = new FileLoader();
+
+        if (bankStore.isFileExists(new File("BankProducts.txt")) && //checking if files are writed well 
+                sellersStore.isFileExists(new File("Sellers.txt"))
+                && salesStore.isFileExists(new File("Sales.txt"))
+                && creditCardMovementStore.isFileExists(new File("CreditCardMovement.txt"))) {
+            bankStore.loadFileBankProducts("BankProducts.txt");
+            sellersStore.loadFileSellers("Sellers.txt");
+            salesStore.loadFileSales("Sales.txt");
+            creditCardMovementStore.loadFileCreditCardMovements("CreditCardMovement.txt");
+        } else {
+            System.out.println("File doesnt exist..");
+            System.exit(0);
+        }
+
+        ArrayList<Double> creditCardTotalWorthMovements = new ArrayList<Double>(); // declare arraylists that
+                                                                                   // are used for
+                                                                                   //  commit etc calculation
+        ArrayList<Double> totalAmountOfLoans_perSeller = new ArrayList<Double>();
+        ArrayList<Double> comisionsOfSellers = new ArrayList<Double>();
+        double sumComision = 0;
+
         System.out.println( // MENU
                 "Choose:\n\t1.new seller\n\t2.new bank product\n\t3.new sale\n\t4.new credit card movement\n\t5.show loans\n\t6.calculating a seller's commission\n\t7.Display of credit card transactions related to a seller\n\t8.Calculation of the commission of all the sellers of the bank\n\t9.Display the final commission amount of all sellers\n\n\tOr 0 to end the programm!");
         int choice = scan.nextInt();
@@ -144,5 +169,9 @@ public class Main {
                 System.out.println("SALE ADDED");
             } 
         }
+
+        scan.close();
+        System.out.println("Thank you for visiting Java Bank!");
+
     }    
 }
