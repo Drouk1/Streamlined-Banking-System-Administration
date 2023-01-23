@@ -167,6 +167,91 @@ public class Main {
                 }
 
                 System.out.println("SALE ADDED");
+            } else if (choice == 4) {
+
+                System.out.println("Write the code of the credit card you want to choose to do this movement: ");
+
+                for (int i = 0; i < bankStore.getCreditCards().size(); i++) { // emfanizei tis credit cards
+                    System.out.println(bankStore.getCreditCards().get(i));
+                }
+                int CCcode = scan.nextInt();
+                int j = 0;
+                int position = 0;
+                while (true) { // loop gia ton elegxo egkirotitas timwn
+                    for (int i = 0; i < bankStore.getCreditCards().size(); i++) {
+                        if (CCcode == bankStore.getCreditCards().get(i).getCode()) {
+                            j = 1;
+                            position = i; // apothikevei to i
+                            break;
+                        }
+                    }
+                    if (j == 1) {
+                        break;
+                    } else {
+                        System.out.print("Doesnt exist! Write again: ");
+                        CCcode = scan.nextInt();
+                    }
+                }
+                double s2 = creditCardTotalWorthMovements.get(position);
+                if (s2 >= bankStore.getCreditCards().get(position).getmaxAnnualAmmount()) { // elegxei an to
+                                                                                            // sigkekrimeno movement
+                                                                                            // einai megalitero apo to
+                                                                                            // maxannoual kai emfanizei
+                                                                                            // to katalilo minima
+                    System.out.println("YOU HAVE REACHED THE LIMIT!");
+
+                } else {
+                    System.out.print("Write the worth: ");
+                    double worth = scan.nextDouble();
+
+                    boolean ok1 = false;
+                    boolean ok2 = false;
+                    double s = creditCardTotalWorthMovements.get(position) + worth;
+                    while (true) { // elegxos gia to an eixe kseperasei to max amount of transactions
+                        if (worth > bankStore.getCreditCards().get(position).getmaxAmountOfMovement()) {
+                            System.out.println(
+                                    "You have surpassed the max amount of transaction.Type another amount of money: ");
+                            s = creditCardTotalWorthMovements.get(position) - worth;
+                            worth = scan.nextDouble();
+                        } else {
+                            ok1 = true;
+                            s = worth + creditCardTotalWorthMovements.get(position);
+                        }
+
+                        if (s > bankStore.getCreditCards().get(position).getmaxAnnualAmmount()) {
+                            System.out.println( // elegxos gia to an exei kseperasei to max annual transaction amount
+                                    "You have surpassed the max annual transaction amount.Type another amount of money: ");
+                            worth = scan.nextDouble();
+                        } else {
+                            ok2 = true;
+                        }
+                        if (ok1 && ok2) {
+                            break;
+                        }
+                    }
+
+                    creditCardTotalWorthMovements.set(position, s); // apothikevei stri lista
+                    if (ok1 && ok2) {
+                        scan.nextLine();
+                        System.out.print("Write the reasoning: ");
+                        String reason = scan.nextLine();
+                        creditCardMovementStore.getCreditCardMovements()
+                                .add(new CreditCardMovement(CCcode, worth, reason, CCcode));
+                        s2 = s;
+
+                        System.out.print("Do you want to store this sale?");
+                        String storeSale = scan.nextLine();
+
+                        if (storeSale.equalsIgnoreCase("yes")) { // kalei tin WriteFilesCreditCardMovements pou grafei
+                                                                 // ta stoixeia pou edwse o xristis sto
+                                                                 // CreditCardMovements.txt
+                            creditCardMovementStore.WriteFilesCreditCardMovements("CreditCardMovement.txt", CCcode,
+                                    CCcode, worth, reason);
+                        }
+                    }
+                    System.out.println("CREDIT CARD MOVEMENT ADDED..");
+                }
+
             } 
         }
 
