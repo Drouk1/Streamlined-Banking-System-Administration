@@ -249,6 +249,31 @@ public class Main {
                                     CCcode, worth, reason);
                         } else if (choice == 5) {
                             System.out.println(bankStore.getLoans()); //displays all the loans
+                        } else if (choice == 6) {
+                            for (int i = 0; i < sellersStore.getSellers().size(); i++) { // displays sellers
+                                System.out.println(i + ". " + sellersStore.getSellers().get(i));
+                            }
+                            System.out.println(
+                                    "These are the sellers.Choose the one you want to calculate the commision(number) from his list number: ");
+            
+                            int commisionCode = scan.nextInt();
+                            int j = 0;
+                            while (true) { //  correctness check of the values
+                                for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                                    if (commisionCode == i) {
+                                        j = 1;
+                                        break;
+                                    }
+                                }
+                                if (j == 1) {
+                                    break;
+                                } else {
+                                    System.out.print("Doesnt exist! Write again: ");
+                                    commisionCode = scan.nextInt();
+                                }
+                            }
+                            System.out.println( //displays commisions of each one
+                                    "Commission of seller num." + commisionCode + " = " + comisionsOfSellers.get(commisionCode));
                         }
                     }
                     System.out.println("CREDIT CARD MOVEMENT ADDED..");
