@@ -274,6 +274,35 @@ public class Main {
                             }
                             System.out.println( //displays commisions of each one
                                     "Commission of seller num." + commisionCode + " = " + comisionsOfSellers.get(commisionCode));
+                        }else if (choice == 7) {
+                            System.out.print("Choose the seller by his code: \n\n");
+                            for (int i = 0; i < sellersStore.getSellers().size(); i++) { //displays sellers
+                                System.out.println(sellersStore.getSellers().get(i));
+                            }
+                            int chooseSeller = scan.nextInt();
+                            int j = 0;
+                            while (true) {
+                                for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                                    if (chooseSeller == sellersStore.getSellers().get(i).getCode()) {
+                                        j = 1;
+                                        break;
+                                    }
+                                }
+                                if (j == 1) {
+                                    break;
+                                } else {
+                                    System.out.print("Doesnt exist! Write again: ");
+                                    chooseSeller = scan.nextInt();
+                                }
+                            }
+                            System.out.println("Credit cards Movements of seller with code " + chooseSeller + ":\n");
+                            for (int i = 0; i < creditCardMovementStore.getCreditCardMovements().size(); i++) { // displays
+                                                                                                                // movement value
+                                if (chooseSeller == creditCardMovementStore.getCreditCardMovements().get(i).getCode()) {
+                                    System.out.println("Movement value:"
+                                            + creditCardMovementStore.getCreditCardMovements().get(i).getMovementWorth());
+                                }
+                            }
                         }
                     }
                     System.out.println("CREDIT CARD MOVEMENT ADDED..");
