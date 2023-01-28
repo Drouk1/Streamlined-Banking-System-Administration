@@ -303,6 +303,11 @@ public class Main {
                                             + creditCardMovementStore.getCreditCardMovements().get(i).getMovementWorth());
                                 }
                             }
+                        } else if (choice == 8) { // calculating all sellers commision!
+                            for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                                sumComision += comisionsOfSellers.get(i);
+                            }
+                            System.out.println("CALCULATION COMPLETED!");
                         }
                     }
                     System.out.println("CREDIT CARD MOVEMENT ADDED..");
