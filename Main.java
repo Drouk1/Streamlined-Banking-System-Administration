@@ -308,6 +308,14 @@ public class Main {
                                 sumComision += comisionsOfSellers.get(i);
                             }
                             System.out.println("CALCULATION COMPLETED!");
+                        } else { // displays all sellers commission 
+                            for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                                System.out.println("First name: " + sellersStore.getSellers().get(i).getFirstName()
+                                        + "\nLast name: " + sellersStore.getSellers().get(i).getLastName()
+                                        + "\nCode: " + sellersStore.getSellers().get(i).getCode()
+                                        + "\nCommission: " + comisionsOfSellers.get(i));
+                            }
+                            System.out.println("\n\nThe final commission amount of all sellers: " + sumComision + "\n\n");
                         }
                     }
                     System.out.println("CREDIT CARD MOVEMENT ADDED..");
