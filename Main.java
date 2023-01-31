@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
@@ -24,8 +25,8 @@ public class Main {
         }
 
         ArrayList<Double> creditCardTotalWorthMovements = new ArrayList<Double>(); // declare arraylists that
-                                                                                   // are used for
-                                                                                   //  commit etc calculation
+                                                                                    // are used for
+                                                                                    //  commit etc calculation
         ArrayList<Double> totalAmountOfLoans_perSeller = new ArrayList<Double>();
         ArrayList<Double> comisionsOfSellers = new ArrayList<Double>();
         double sumComision = 0;
@@ -33,15 +34,48 @@ public class Main {
         System.out.println( // MENU
                 "Choose:\n\t1.new seller\n\t2.new bank product\n\t3.new sale\n\t4.new credit card movement\n\t5.show loans\n\t6.calculating a seller's commission\n\t7.Display of credit card transactions related to a seller\n\t8.Calculation of the commission of all the sellers of the bank\n\t9.Display the final commission amount of all sellers\n\n\tOr 0 to end the programm!");
         int choice = scan.nextInt();
-
-        
-
         while (choice < 0 || choice > 9) { //if answer is not between 0-9 it asks again till it gets the right answer
             System.out.println("Please type a number between 1 - 9 or 0 to end the programm!");
             choice = scan.nextInt();
         }
+        while (choice != 0) { 
+            for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                double sum = 0;
+                for (int j = 0; j < bankStore.getLoans().size(); j++) {
+                    if (sellersStore.getSellers().get(i).getCode() == bankStore.getLoans().get(j).getCode()) {
+                        sum += bankStore.getLoans().get(j).getAmountOfLoan();
+                    }
+                }
+                totalAmountOfLoans_perSeller.add(sum); 
+            }
 
-        while (choice != 0) {
+            for (int z = 0; z < bankStore.getCreditCards().size(); z++) { 
+                double sum = 0.0;
+                for (int j = 0; j < creditCardMovementStore.getCreditCardMovements().size(); j++) {
+                    if (bankStore.getCreditCards().get(z).getCode() == creditCardMovementStore.getCreditCardMovements()
+                            .get(j)
+                            .getCode()) {
+                        sum += creditCardMovementStore.getCreditCardMovements().get(j).getMovementWorth();
+                    }
+                }
+                creditCardTotalWorthMovements.add(sum);
+            }
+
+            for (int v = 0; v < sellersStore.getSellers().size(); v++) { 
+                if (totalAmountOfLoans_perSeller.get(v) <= 500000) {
+                    comisionsOfSellers
+                            .add((totalAmountOfLoans_perSeller.get(v) * 0.1) + (creditCardTotalWorthMovements.get(v)
+                                    * bankStore.getCreditCards().get(v).getCommisionRate()));
+                } else if (totalAmountOfLoans_perSeller.get(v) <= 2000000) {
+                    comisionsOfSellers.add((totalAmountOfLoans_perSeller.get(v) * 0.2)
+                            + (creditCardTotalWorthMovements.get(v)
+                                    * bankStore.getCreditCards().get(v).getCommisionRate()));
+                } else {
+                    comisionsOfSellers.add((totalAmountOfLoans_perSeller.get(v) * 0.25)
+                            + (creditCardTotalWorthMovements.get(v)
+                                    * bankStore.getCreditCards().get(v).getCommisionRate()));
+                }
+            }
 
             if (choice == 1) { // input from user
                 scan.nextLine();
@@ -57,9 +91,8 @@ public class Main {
                 System.out.print("AFM: ");
                 int afm = scan.nextInt();
 
-                Sellers seller = new Sellers(firstName, lastName, afm, code); // makes new seller object with the users input
-                                                                              
-                //sellersStore.getSellers().add(seller);
+                Sellers seller = new Sellers(firstName, lastName, afm, code);//makes new seller object with the users input
+                sellersStore.getSellers().add(seller);
 
                 System.out.println("SELLER ADDED");
 
@@ -110,7 +143,7 @@ public class Main {
 
                     Loan loanx = new Loan(codeP, number, afm, null, null, amountOfLoan, annualInterestRate);
 
-                    bankStore.getLoans().add(loanx); ///makes loan object card and and put the users input
+                    bankStore.getLoans().add(loanx); //makes loan object card and and put the users input
 
                     System.out.println("LOAN ADDED");
 
@@ -118,8 +151,8 @@ public class Main {
             } else if (choice == 3) {
                 System.out.print("Choose the seller by his code: \n\n");
                 for (int i = 0; i < sellersStore.getSellers().size(); i++) { // prints seller so
-                                                                             // the user can see them and choose
-                                                                             // the code 
+                                                                            // the user can see them and choose
+                                                                            // the code 
                     System.out.println(sellersStore.getSellers().get(i));
                 }
                 int mparigkasCode = scan.nextInt();
@@ -146,9 +179,8 @@ public class Main {
                 System.out.print("Tell us the reasoning: ");
                 scan.nextLine();
                 String reason = scan.nextLine();
-                Sales salere = new Sales(saleCode, bankProduct, reason, null); //makes new sales object
-                                                                               // and put the values of the user
-
+                Sales salere = new Sales(saleCode, bankProduct, reason, null);//makes new sales object
+                                                                                           // and put the values of the user
                 salesStore.getSales().add(salere);
 
                 String bankItemType;
@@ -162,7 +194,7 @@ public class Main {
                 String storeSale = scan.nextLine();
 
                 if (storeSale.equalsIgnoreCase("yes")) { //calls WriteFilesSales and write the elements to
-                                                         // Sales.txt
+                                                                       // Sales.txt
                     salesStore.WriteFilesSales("Sales.txt", saleCode, bankItemType, bankProduct, reason);
                 }
 
@@ -181,7 +213,7 @@ public class Main {
                     for (int i = 0; i < bankStore.getCreditCards().size(); i++) {
                         if (CCcode == bankStore.getCreditCards().get(i).getCode()) {
                             j = 1;
-                            position = i; // stores i
+                            position = i;  // stores i
                             break;
                         }
                     }
@@ -230,7 +262,7 @@ public class Main {
                         }
                     }
 
-                    creditCardTotalWorthMovements.set(position, s); // stores in the list
+                    creditCardTotalWorthMovements.set(position, s);// stores in the list
                     if (ok1 && ok2) {
                         scan.nextLine();
                         System.out.print("Write the reasoning: ");
@@ -243,89 +275,97 @@ public class Main {
                         String storeSale = scan.nextLine();
 
                         if (storeSale.equalsIgnoreCase("yes")) { // calls OriteFilesCreditSardMoments which writes
-                                                                 // the information provided by the user to
-                                                                 // CreditCardMovements.txt
+                                                                                // the information provided by the user to
+                                                                                // CreditCardMovements.txt
                             creditCardMovementStore.WriteFilesCreditCardMovements("CreditCardMovement.txt", CCcode,
                                     CCcode, worth, reason);
-                        } else if (choice == 5) {
-                            System.out.println(bankStore.getLoans()); //displays all the loans
-                        } else if (choice == 6) {
-                            for (int i = 0; i < sellersStore.getSellers().size(); i++) { // displays sellers
-                                System.out.println(i + ". " + sellersStore.getSellers().get(i));
-                            }
-                            System.out.println(
-                                    "These are the sellers.Choose the one you want to calculate the commision(number) from his list number: ");
-            
-                            int commisionCode = scan.nextInt();
-                            int j = 0;
-                            while (true) { //  correctness check of the values
-                                for (int i = 0; i < sellersStore.getSellers().size(); i++) {
-                                    if (commisionCode == i) {
-                                        j = 1;
-                                        break;
-                                    }
-                                }
-                                if (j == 1) {
-                                    break;
-                                } else {
-                                    System.out.print("Doesnt exist! Write again: ");
-                                    commisionCode = scan.nextInt();
-                                }
-                            }
-                            System.out.println( //displays commisions of each one
-                                    "Commission of seller num." + commisionCode + " = " + comisionsOfSellers.get(commisionCode));
-                        }else if (choice == 7) {
-                            System.out.print("Choose the seller by his code: \n\n");
-                            for (int i = 0; i < sellersStore.getSellers().size(); i++) { //displays sellers
-                                System.out.println(sellersStore.getSellers().get(i));
-                            }
-                            int chooseSeller = scan.nextInt();
-                            int j = 0;
-                            while (true) {
-                                for (int i = 0; i < sellersStore.getSellers().size(); i++) {
-                                    if (chooseSeller == sellersStore.getSellers().get(i).getCode()) {
-                                        j = 1;
-                                        break;
-                                    }
-                                }
-                                if (j == 1) {
-                                    break;
-                                } else {
-                                    System.out.print("Doesnt exist! Write again: ");
-                                    chooseSeller = scan.nextInt();
-                                }
-                            }
-                            System.out.println("Credit cards Movements of seller with code " + chooseSeller + ":\n");
-                            for (int i = 0; i < creditCardMovementStore.getCreditCardMovements().size(); i++) { // displays
-                                                                                                                // movement value
-                                if (chooseSeller == creditCardMovementStore.getCreditCardMovements().get(i).getCode()) {
-                                    System.out.println("Movement value:"
-                                            + creditCardMovementStore.getCreditCardMovements().get(i).getMovementWorth());
-                                }
-                            }
-                        } else if (choice == 8) { // calculating all sellers commision!
-                            for (int i = 0; i < sellersStore.getSellers().size(); i++) {
-                                sumComision += comisionsOfSellers.get(i);
-                            }
-                            System.out.println("CALCULATION COMPLETED!");
-                        } else { // displays all sellers commission 
-                            for (int i = 0; i < sellersStore.getSellers().size(); i++) {
-                                System.out.println("First name: " + sellersStore.getSellers().get(i).getFirstName()
-                                        + "\nLast name: " + sellersStore.getSellers().get(i).getLastName()
-                                        + "\nCode: " + sellersStore.getSellers().get(i).getCode()
-                                        + "\nCommission: " + comisionsOfSellers.get(i));
-                            }
-                            System.out.println("\n\nThe final commission amount of all sellers: " + sumComision + "\n\n");
                         }
                     }
                     System.out.println("CREDIT CARD MOVEMENT ADDED..");
                 }
 
-            } 
-        }
+            } else if (choice == 5) {
+                System.out.println(bankStore.getLoans()); //displays all the loans
+            } else if (choice == 6) {
+                for (int i = 0; i < sellersStore.getSellers().size(); i++) { // displays sellers
+                    System.out.println(i + ". " + sellersStore.getSellers().get(i));
+                }
+                System.out.println(
+                        "These are the sellers.Choose the one you want to calculate the commision(number) from his list number: ");
 
+                int commisionCode = scan.nextInt();
+                int j = 0;
+                while (true) { //  correctness check of the values
+                    for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                        if (commisionCode == i) {
+                            j = 1;
+                            break;
+                        }
+                    }
+                    if (j == 1) {
+                        break;
+                    } else {
+                        System.out.print("Doesnt exist! Write again: ");
+                        commisionCode = scan.nextInt();
+                    }
+                }
+                System.out.println( //displays commisions of each one
+                        "Commission of seller num." + commisionCode + " = " + comisionsOfSellers.get(commisionCode));
+            } else if (choice == 7) {
+                System.out.print("Choose the seller by his code: \n\n");
+                for (int i = 0; i < sellersStore.getSellers().size(); i++) { //displays sellers
+                    System.out.println(sellersStore.getSellers().get(i));
+                }
+                int chooseSeller = scan.nextInt();
+                int j = 0;
+                while (true) {
+                    for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                        if (chooseSeller == sellersStore.getSellers().get(i).getCode()) {
+                            j = 1;
+                            break;
+                        }
+                    }
+                    if (j == 1) {
+                        break;
+                    } else {
+                        System.out.print("Doesnt exist! Write again: ");
+                        chooseSeller = scan.nextInt();
+                    }
+                }
+                System.out.println("Credit cards Movements of seller with code " + chooseSeller + ":\n");
+                for (int i = 0; i < creditCardMovementStore.getCreditCardMovements().size(); i++) { // displays
+                                                                                                    // movement value
+                    if (chooseSeller == creditCardMovementStore.getCreditCardMovements().get(i).getCode()) {
+                        System.out.println("Movement value:"
+                                + creditCardMovementStore.getCreditCardMovements().get(i).getMovementWorth());
+                    }
+                }
+            } else if (choice == 8) { // calculating all sellers commision!
+                for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                    sumComision += comisionsOfSellers.get(i);
+                }
+                System.out.println("CALCULATION COMPLETED!");
+            } else { // displays all sellers commission 
+                for (int i = 0; i < sellersStore.getSellers().size(); i++) {
+                    System.out.println("First name: " + sellersStore.getSellers().get(i).getFirstName()
+                            + "\nLast name: " + sellersStore.getSellers().get(i).getLastName()
+                            + "\nCode: " + sellersStore.getSellers().get(i).getCode()
+                            + "\nCommission: " + comisionsOfSellers.get(i));
+                }
+                System.out.println("\n\nThe final commission amount of all sellers: " + sumComision + "\n\n");
+            }
+
+            System.out.println(
+                    "Choose:\n\t1.new seller\n\t2.new bank product\n\t3.new sale\n\t4.new credit card movement\n\t5.show loans\n\t6.calculating a seller's commission\n\t7.Display of credit card transactions related to a seller\n\t8.Calculation of the commission of all the sellers of the bank\n\t9.Display the final commission amount of all sellers\n\n\tOr 0 to end the programm!");
+            choice = scan.nextInt();
+            while (choice < 0 || choice > 9) { // if answer is not between 0-9 it asks again till it gets the right answer
+                System.out.println("Please type a number between 1 - 9 or 0 to end the programm!");
+                choice = scan.nextInt();
+            }
+
+        }
         scan.close();
         System.out.println("Thank you for visiting Java Bank!");
+    }
 
-    }    
 }
