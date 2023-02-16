@@ -194,7 +194,7 @@ public class FileLoader {
             // while ((line = reader.readLine()).equals("}")) {
             // continue;
             // }
-            writer.write("\t\tTRN\n\t{\n\t\tEMPLOYEE_CODE " + emplCode + "\n\t\tΒΑΝΚΙΤΕΜ_CODE " + bankCode
+            writer.write("\t\tTRN\n\t{\n\t\tEMPLOYEE_CODE " + emplCode + "\n\t\tBANKITEM_CODE " + bankCode
                     + "\n\t\tVAL " + val + "\n\t\tJUSTIFICATION " + reason + "\n\t}\n}");
 
             writer.close();
