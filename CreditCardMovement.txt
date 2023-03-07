@@ -1,0 +1,87 @@
+TRN_LIST
+{
+        TRN
+    {
+        EMPLOYEE_CODE 1
+        ΒΑΝΚΙΤΕΜ_CODE 1
+        VAL 10000
+        JUSTIFICATION “Buy Bitcoin”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 1
+        ΒΑΝΚΙΤΕΜ_CODE 1
+        VAL 20000
+        JUSTIFICATION “Buy Etherium”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 1
+        ΒΑΝΚΙΤΕΜ_CODE 1
+        VAL 30000
+        JUSTIFICATION "Buy Car”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 1
+        ΒΑΝΚΙΤΕΜ_CODE 1
+        VAL 40000
+        JUSTIFICATION “Buy yacht”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 11
+        ΒΑΝΚΙΤΕΜ_CODE 11
+        VAL 50000
+        JUSTIFICATION “Buy Tesla stocks”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 11
+        ΒΑΝΚΙΤΕΜ_CODE 11
+        VAL 60000
+        JUSTIFICATION “Pay bill”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 11
+        ΒΑΝΚΙΤΕΜ_CODE 11
+        VAL 70000
+        JUSTIFICATION “Open new store”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 11
+        ΒΑΝΚΙΤΕΜ_CODE 11
+        VAL 80000
+        JUSTIFICATION “Vacation”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 111
+        ΒΑΝΚΙΤΕΜ_CODE 111
+        VAL 90000
+        JUSTIFICATION “Buy villa”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 111
+        ΒΑΝΚΙΤΕΜ_CODE 111
+        VAL 100000
+        JUSTIFICATION “Buy purse to my girlfriend”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 111
+        ΒΑΝΚΙΤΕΜ_CODE 111
+        VAL 110000
+        JUSTIFICATION “Buy another purse to my girlfriend”
+    }
+        TRN
+    {
+        EMPLOYEE_CODE 111
+        ΒΑΝΚΙΤΕΜ_CODE 111
+        VAL 120000
+        JUSTIFICATION “Buy an BAYC nft”
+    }
+}
