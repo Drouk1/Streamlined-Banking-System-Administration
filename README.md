@@ -1,5 +1,4 @@
 # Streamlined-Banking-System-Administration
-==========================
 This is a Java project developed for the second semester in Athens University of Economics and Business [AUEB](https://www.aueb.gr/), aiming to create a bank manager that calculates commissions for sellers of loans and credit cards.
 
 Info
