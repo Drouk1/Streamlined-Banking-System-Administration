@@ -24,4 +24,4 @@ To run the program, you need to have the Java Development Kit (JDK) installed on
 
 Licence
 ---------------
-This project is licensed under the terms of the [MIT](LICENCE.txt) License.
+This project is licensed under the terms of the [MIT](LICENSE.txt) License.
